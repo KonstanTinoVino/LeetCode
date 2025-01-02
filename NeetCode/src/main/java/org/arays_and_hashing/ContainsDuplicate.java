@@ -1,7 +1,9 @@
 package org.arays_and_hashing;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 // https://neetcode.io/problems/duplicate-integer
 public class ContainsDuplicate {
@@ -34,6 +36,14 @@ public class ContainsDuplicate {
         }
 
         return false;
+    }
+
+    public static boolean Solution2(int[] nums){
+        HashSet<Integer> mySet = Arrays.stream(nums)
+                .boxed()
+                .collect(Collectors.toCollection(HashSet::new));
+
+        return nums.length > mySet.size();
     }
 
 }
