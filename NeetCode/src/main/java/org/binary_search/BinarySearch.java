@@ -29,15 +29,29 @@ public class BinarySearch {
 
      */
 
+    public int binary_search(int l, int r, int[] nums, int target) {
+        if (l > r) return -1;
+        System.out.println("--------------------------");
+        System.out.println(l);
+        System.out.println(r);
+        int m = l + (r - l) / 2;
+        System.out.println(m);
+        System.out.println("-------------------------");
+
+        if (nums[m] == target) return m;
+        return (nums[m] < target) ?
+                binary_search(m + 1, r, nums, target) :
+                binary_search(l, m - 1, nums, target);
+    }
+
     public int search(int[] nums, int target) {
+        return binary_search(0, nums.length -1, nums, target);
+    }
 
-        if (nums.length == 0) return -1;
-
-        int middle = nums[nums.length / 2];
-        if (middle == target) return 0;
-        if (middle > target) search(Arrays.copyOfRange(nums, 0, nums.length / 2 ), target);
-        else search(Arrays.copyOfRange(nums, 0, nums.length / 2 ), target);
-
-        return -1;
+    public static void main(String[] args) {
+        BinarySearch search = new BinarySearch();
+        int[] array = {-1,0,2,4,6,8};
+        System.out.println(array.length);
+        System.out.println(search.search(array, 3));
     }
 }
